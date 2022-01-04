@@ -1,0 +1,20 @@
+# libraries
+boto3
+
+# linters + type annotations
+black
+mypy_extensions
+mypy
+flake8
+pylint
+aws-lambda-typing
+boto3-stubs
+types-jsonschema
+
+# tests
+pytest
+moto
+
+# integration tests 
+aws-requests-auth
+requests

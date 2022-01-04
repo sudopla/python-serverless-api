@@ -1,0 +1,18 @@
+{
+    "files.exclude": {
+        "**/*.pyc": true,
+        "**/__pycache__": true
+    },
+    "python.pythonPath": "venv/bin/python",
+    "python.linting.pylintPath": "venv/bin/pylint",
+    "python.linting.pylintEnabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true,
+    "python.formatting.provider": "black",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "python.analysis.extraPaths": [
+        "./api"
+    ]
+}

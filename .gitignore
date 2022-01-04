@@ -1,0 +1,23 @@
+*.js
+!jest.config.js
+*.d.ts
+node_modules
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+tmp
+
+# Environment Variables and settings
+.envrc
+
+# Environments
+.env
+.venv
+env/
+venv/
+
+# Python
+__pycache__/
+.mypy_cache/
+.pytest_cache/

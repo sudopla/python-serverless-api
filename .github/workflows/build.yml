@@ -1,0 +1,53 @@
+name: App Name
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+
+    - name: Cache pip packages
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Run black
+      working-directory: .
+      run: |
+        black --diff --check api
+
+    - name: Run flake8
+      working-directory: .
+      run: |
+        flake8 api
+
+    - name: Run pylint
+      working-directory: .
+      run: |
+        pylint api
+
+    - name: Run mypy
+      working-directory: .
+      run: |
+        mypy api
+
+    - name: Run pytest
+      working-directory: .
+      run: |
+          python -m pytest tests/unit
+      env:
+          ENVIRONMENT: local
