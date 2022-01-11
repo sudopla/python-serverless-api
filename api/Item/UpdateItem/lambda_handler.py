@@ -11,7 +11,6 @@ from jsonschema import validate, ValidationError
 from aws_lambda_typing import context as context_, events, responses
 from utils_layer.responses import success_response, fail_response
 from utils_layer.dynamo_expressions import build_update_expressions
-from decimal import Decimal
 
 # Initialize logger
 logger = logging.getLogger()
@@ -25,15 +24,14 @@ table = dynamodb.Table(TABLE_NAME)
 # Input schema
 inputSchema = {
     "type": "object",
-    "properties": {
-        "artist_name": {"type": "string"},
-        "album_name": {"type": "string"}
-    },
-    "required": ["artist_name", "album_name"]
+    "properties": {"artist_name": {"type": "string"}, "album_name": {"type": "string"}},
+    "required": ["artist_name", "album_name"],
 }
 
 
-def handler(event: events.APIGatewayProxyEventV2, context: context_.Context) -> responses.APIGatewayProxyResponseV2:
+def handler(
+    event: events.APIGatewayProxyEventV2, context: context_.Context
+) -> responses.APIGatewayProxyResponseV2:
     # pylint: disable=unused-argument
     """
     Lambda handler
@@ -65,20 +63,14 @@ def handler(event: events.APIGatewayProxyEventV2, context: context_.Context) -> 
 
         update_expression, attribute_values = build_update_expressions(body)
         response = table.update_item(
-            Key={
-                'PK': partition_key,
-                'SK': sort_key
-            },
+            Key={"PK": partition_key, "SK": sort_key},
             UpdateExpression=update_expression,
             ExpressionAttributeValues=attribute_values,
-            ReturnValues="UPDATED_NEW"
+            ReturnValues="UPDATED_NEW",
         )
 
         return success_response(
-            {
-                "message": "Item was updated successfully",
-                "item": response["Attributes"]
-            }
+            {"message": "Item was updated successfully", "item": response["Attributes"]}
         )
 
     except ValidationError as exc:

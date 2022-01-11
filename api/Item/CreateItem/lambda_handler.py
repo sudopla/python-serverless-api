@@ -29,13 +29,15 @@ bodySchema = {
         "release_year": {"type": "number"},
         "num_songs": {"type": "number"},
         "sales": {"type": "number"},
-        "record_label": {"type": "string"}
+        "record_label": {"type": "string"},
     },
-    "required": ["artist_name", "album_name"]
+    "required": ["artist_name", "album_name"],
 }
 
 
-def handler(event: events.APIGatewayProxyEventV2, context: context_.Context) -> responses.APIGatewayProxyResponseV2:
+def handler(
+    event: events.APIGatewayProxyEventV2, context: context_.Context
+) -> responses.APIGatewayProxyResponseV2:
     # pylint: disable=unused-argument
     """
     Lambda handler
@@ -65,8 +67,8 @@ def handler(event: events.APIGatewayProxyEventV2, context: context_.Context) -> 
         item = {
             "PK": f"ARTIST#{body['artist_name']}",
             "SK": f"ALBUM#{body['album_name']}",
-            "ArtistName": body['artist_name'],
-            "AlbumName": body['album_name'],
+            "ArtistName": body["artist_name"],
+            "AlbumName": body["album_name"],
             "ReleaseYear": body["release_year"],
             "NumSongs": body["num_songs"],
             "Sales": body["sales"],

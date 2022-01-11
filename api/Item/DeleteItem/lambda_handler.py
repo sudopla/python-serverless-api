@@ -1,7 +1,6 @@
 """
 Delete Item Lambda
 """
-import json
 import os
 import traceback
 import logging
@@ -23,21 +22,19 @@ table = dynamodb.Table(TABLE_NAME)
 # Input schema
 pathParameterSchema = {
     "type": "object",
-    "properties": {
-        "album_name": {"type": "string"}
-    },
-    "required": ["album_name"]
+    "properties": {"album_name": {"type": "string"}},
+    "required": ["album_name"],
 }
 queryStringSchema = {
     "type": "object",
-    "properties": {
-        "artist_name": {"type": "string"}
-    },
-    "required": ["artist_name"]
+    "properties": {"artist_name": {"type": "string"}},
+    "required": ["artist_name"],
 }
 
 
-def handler(event: events.APIGatewayProxyEventV2, context: context_.Context) -> responses.APIGatewayProxyResponseV2:
+def handler(
+    event: events.APIGatewayProxyEventV2, context: context_.Context
+) -> responses.APIGatewayProxyResponseV2:
     # pylint: disable=unused-argument
     """
     Lambda handler
@@ -69,10 +66,7 @@ def handler(event: events.APIGatewayProxyEventV2, context: context_.Context) -> 
         partition_key = f"ARTIST#{query_strings['artist_name']}"
         sort_key = f"ALBUM#{path_parameter['album_name']}"
 
-        table.delete_item(Key={
-            'PK': partition_key,
-            'SK': sort_key
-        })
+        table.delete_item(Key={"PK": partition_key, "SK": sort_key})
 
         return success_response(
             {

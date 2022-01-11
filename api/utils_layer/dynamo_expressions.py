@@ -18,7 +18,7 @@ ATTRIBUTES_VALUES_MAPPING = {
     "ReleaseYear": ":ry",
     "NumSongs": ":ns",
     "Sales": ":s",
-    "RecordLabel": ":rl"
+    "RecordLabel": ":rl",
 }
 
 
@@ -29,7 +29,11 @@ def build_update_expressions(obj: Dict[str, Any]) -> Tuple[str, Dict[str, str]]:
     expression_attribute_values = {}
     for dynamo_attr, api_attr in ATTRIBUTES_DYNAMO_API_MAPPING.items():
         if api_attr in obj:
-            update_expression += dynamo_attr+"="+ATTRIBUTES_VALUES_MAPPING[dynamo_attr]+", "
-            expression_attribute_values[ATTRIBUTES_VALUES_MAPPING[dynamo_attr]] = obj[api_attr]
+            update_expression += (
+                dynamo_attr + "=" + ATTRIBUTES_VALUES_MAPPING[dynamo_attr] + ", "
+            )
+            expression_attribute_values[ATTRIBUTES_VALUES_MAPPING[dynamo_attr]] = obj[
+                api_attr
+            ]
 
     return update_expression[:-2], expression_attribute_values

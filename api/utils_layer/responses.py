@@ -5,7 +5,7 @@ API response functions
 import json
 import logging
 from typing import Dict, Any, Union
-from .encoder import JSONEncoder
+from utils_layer.encoder import JSONEncoder
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
