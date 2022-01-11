@@ -1,5 +1,6 @@
 # libraries
 boto3
+jsonschema
 
 # linters + type annotations
 black
