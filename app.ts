@@ -42,5 +42,5 @@ monitoring.node.addDependency(api)
 new DeploymentPipeline(app, `${appName}-Pipeline-Stack`, {
   awsEnv,
   pipelineName: `${appName}-Pipeline`,
-  stackNames: ['TableStack', 'ApiStack']
+  stackNames: [`${tableName}-Stack`, `${appName}-Stack`]
 })
