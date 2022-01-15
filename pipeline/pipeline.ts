@@ -63,6 +63,9 @@ export class DeploymentPipeline extends Stack {
                   environmentVariables: {
                     AWS_ACCOUNT: {
                       value: props.awsEnv.account
+                    },
+                    AWS_REGIONS: {
+                      value: props.awsEnv.region
                     }
                   }
                 },

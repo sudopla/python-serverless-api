@@ -23,24 +23,30 @@ new DynamoTable(tableStack, 'Table', {
   tableName
 })
 
-// Http Api + Monitoring Stack
+// Http Api
 const httpApiStack = new Stack(app, `${appName}-Stack`, {
   description: 'API Stack',
   env: awsEnv
 })
-const api = new Api(httpApiStack, 'Api', {
+new Api(httpApiStack, 'Api', {
   apiName: appName,
   tableName
 })
-const monitoring = new Monitoring(httpApiStack, 'Monitoring', {
+
+// Monitoring Stack
+const monitoringStack = new Stack(app, `${appName}-Monitoring-Stack`, {
+  description: 'Monitoring Stack',
+  env: awsEnv
+})
+monitoringStack.addDependency(httpApiStack)
+new Monitoring(monitoringStack, 'Monitoring', {
   tableName,
   apiName: appName
 })
-monitoring.node.addDependency(api)
 
 // Define Deployment Pipeline
 new DeploymentPipeline(app, `${appName}-Pipeline-Stack`, {
   awsEnv,
   pipelineName: `${appName}-Pipeline`,
-  stackNames: [`${tableName}-Stack`, `${appName}-Stack`]
+  stackNames: [`${tableName}-Stack`, `${appName}-Stack`, `${appName}-Monitoring-Stack`]
 })
