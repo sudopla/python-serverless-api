@@ -23,7 +23,9 @@ def success_response(result: Dict[str, Any]) -> responses.APIGatewayProxyRespons
     return value
 
 
-def fail_response(exc: Union[Exception, str], http_status_code=500) -> responses.APIGatewayProxyResponseV2:
+def fail_response(
+    exc: Union[Exception, str], http_status_code=500
+) -> responses.APIGatewayProxyResponseV2:
     """API Fail Respone Object"""
 
     value: responses.APIGatewayProxyResponseV2 = {

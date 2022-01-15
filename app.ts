@@ -28,14 +28,15 @@ const httpApiStack = new Stack(app, `${appName}-Stack`, {
   description: 'API Stack',
   env: awsEnv
 })
-new Api(httpApiStack, 'Api', {
+const api = new Api(httpApiStack, 'Api', {
   apiName: appName,
   tableName
 })
-new Monitoring(httpApiStack, 'Monitoring', {
+const monitoring = new Monitoring(httpApiStack, 'Monitoring', {
   tableName,
   apiName: appName
 })
+monitoring.node.addDependency(api)
 
 // Define Deployment Pipeline
 new DeploymentPipeline(app, `${appName}-Pipeline-Stack`, {
