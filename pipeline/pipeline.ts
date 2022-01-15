@@ -59,7 +59,12 @@ export class DeploymentPipeline extends Stack {
                 role: codeBuildRole,
                 environment: {
                   buildImage: codebuild.LinuxBuildImage.STANDARD_5_0,
-                  privileged: true // true to enable docker
+                  privileged: true, // true to enable docker,
+                  environmentVariables: {
+                    AWS_ACCOUNT: {
+                      value: props.awsEnv.account
+                    }
+                  }
                 },
                 buildSpec: codebuild.BuildSpec.fromObject({
                   version: '0.2',

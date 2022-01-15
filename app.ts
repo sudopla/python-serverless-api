@@ -1,6 +1,7 @@
 import { App, Stack } from 'aws-cdk-lib'
 import { Api } from './api/cdk'
 import { DynamoTable } from './database/cdk'
+import { Monitoring } from './monitoring/cdk'
 import { DeploymentPipeline } from './pipeline/pipeline'
 import { getAwsAccount, getAwsRegion } from './utils'
 
@@ -10,11 +11,11 @@ const app = new App() // CDK App
 const awsEnv = { account: getAwsAccount(), region: getAwsRegion() }
 
 // Props
-const tableName = 'app_name_table'
-const apiName = 'app_name_api'
+const appName = 'Python-Serverless-API'
+const tableName = `${appName}-Table`
 
 // Dynamo Table Stack
-const tableStack = new Stack(app, 'TableStack', {
+const tableStack = new Stack(app, `${tableName}-Stack`, {
   description: 'Table Stack',
   env: awsEnv
 })
@@ -22,19 +23,23 @@ new DynamoTable(tableStack, 'Table', {
   tableName
 })
 
-// Http Api Stack
-const httpApiStack = new Stack(app, 'ApiStack', {
+// Http Api + Monitoring Stack
+const httpApiStack = new Stack(app, `${appName}-Stack`, {
   description: 'API Stack',
   env: awsEnv
 })
 new Api(httpApiStack, 'Api', {
-  apiName,
+  apiName: appName,
   tableName
+})
+new Monitoring(httpApiStack, 'Monitoring', {
+  tableName,
+  apiName: appName
 })
 
 // Define Deployment Pipeline
-new DeploymentPipeline(app, 'PipelineStack', {
+new DeploymentPipeline(app, `${appName}-Pipeline-Stack`, {
   awsEnv,
-  pipelineName: `${apiName}-Pipeline`,
+  pipelineName: `${appName}-Pipeline`,
   stackNames: ['TableStack', 'ApiStack']
 })

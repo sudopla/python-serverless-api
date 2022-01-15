@@ -14,5 +14,8 @@
     },
     "python.analysis.extraPaths": [
         "./api"
-    ]
+    ],
+    "yaml.schemas": {
+        "https://json.schemastore.org/github-workflow.json": "file:///Users/jpla/Github-Repos/python-apigateway-dynamodb/.github/workflows/build.yml"
+    }
 }
