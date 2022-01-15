@@ -8,10 +8,10 @@ from aws_requests_auth.boto_utils import BotoAWSRequestsAuth
 def get_api_parameters():
     ssm = boto3.client("ssm")
 
-    api_url = ssm.get_parameter(Name="/app_name_api/API_URL", WithDecryption=True)[
+    api_url = ssm.get_parameter(Name="/Python-Serverless-API/API_URL", WithDecryption=True)[
         "Parameter"
     ]["Value"]
-    api_id = ssm.get_parameter(Name="/app_name_api/API_ID", WithDecryption=True)[
+    api_id = ssm.get_parameter(Name="/Python-Serverless-API/API_ID", WithDecryption=True)[
         "Parameter"
     ]["Value"]
     return api_url, api_id
