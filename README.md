@@ -12,7 +12,7 @@ In this project you can also find how to apply linting and formatting rules to y
 
 This is a simple service that uses [AWS API Gateway HTTP API](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api.html). It's integrated with Lambda functions on the backend and uses IAM authentication. A DynamoDB table is used as the database. 
 
-<img src="assets/img/api-gateway-dynamo.png" width="50%">
+<img src="assets/img/api-gateway-dynamo.png" width="80%">
 
 ### Project Structure
 
