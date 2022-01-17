@@ -2,11 +2,11 @@
 
 This is a serverless API microservice developed using the [AWS CDK](https://aws.amazon.com/cdk/) and structured following [best practices](https://docs.aws.amazon.com/cdk/v2/guide/best-practices.html).
 
-The application is organized into logical units, such as API, database, monitoring resources and deployment pipeline. These logical units should be implemented as [constructs](https://docs.aws.amazon.com/cdk/v2/guide/constructs.html) including the infrastructure and the runtime code. The constructs are later group in [stacks](https://docs.aws.amazon.com/cdk/v2/guide/stacks.html), which define the deployment model.
+The application is organized into logical units, such as API, database, monitoring resources and deployment pipeline. These logical units should be implemented as [constructs](https://docs.aws.amazon.com/cdk/v2/guide/constructs.html), including the infrastructure and the runtime code. The constructs are later group in [stacks](https://docs.aws.amazon.com/cdk/v2/guide/stacks.html), which define the deployment models.
 
-The runtime code is written in Python in this case but the same approach could be followed for other programming languages.  
+The runtime code is written in Python and defines basic CRUD operations to manage music albums as an example.
 
-The application code is written in Python. 
+In this project you can also find how to apply linting and formatting rules to your code. Implement continuos integration using [GitHub Actions](https://docs.github.com/en/actions) and continuos deployment using [CodePipeline](https://docs.aws.amazon.com/codepipeline/latest/userguide/welcome.html). 
 
 ### Architecture
 
@@ -16,7 +16,7 @@ This is a simple service that uses [AWS API Gateway HTTP API](https://docs.aws.a
 
 ### Project Structure
 
-Each logical unit has a directory that includes the related infrastructure, runtime and configuration code. This way any developer can easily find the code related to a specific logical unit. 
+Each logical unit has a directory that includes the related infrastructure, runtime and configuration code. This way, any developer can easily find the code related to a specific logical unit. 
 
     .
     ├── .github                         # GitHub actions for continuos integration
@@ -53,7 +53,7 @@ Each logical unit has a directory that includes the related infrastructure, runt
 
 You can fork this repository and clone it to your local environment.
 
-Then, if you want to deploy the application to the development environment please follow the next steps:
+Then, if you want to deploy the application to the development environment, please follow the next steps:
 
 1. `npm install`
 2. `npm run cdk deploy Python-Serverless-API-Stack Python-Serverless-API-Table-Stack Python-Serverless-API-Monitoring-Stack`
