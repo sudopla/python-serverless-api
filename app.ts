@@ -2,7 +2,7 @@ import { App, Stack } from 'aws-cdk-lib'
 import { Api } from './api/cdk'
 import { DynamoTable } from './database/cdk'
 import { Monitoring } from './monitoring/cdk'
-import { DeploymentPipeline } from './pipeline/pipeline'
+import { DeploymentPipeline } from './pipeline/cdk'
 import { getAwsAccount, getAwsRegion } from './utils'
 
 const app = new App() // CDK App
@@ -47,6 +47,8 @@ new Monitoring(monitoringStack, 'Monitoring', {
 // Define Deployment Pipeline
 new DeploymentPipeline(app, `${appName}-Pipeline-Stack`, {
   awsEnv,
+  repoOwner: 'sudopla',
+  repoName: 'python-serverless-api',
   pipelineName: `${appName}-Pipeline`,
   stackNames: [`${tableName}-Stack`, `${appName}-Stack`, `${appName}-Monitoring-Stack`]
 })

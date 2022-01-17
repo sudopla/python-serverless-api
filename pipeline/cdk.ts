@@ -10,6 +10,8 @@ import { Construct } from 'constructs'
 
 export interface DeploymentPipelineProps {
   awsEnv: { account: string, region: string },
+  repoOwner: string,
+  repoName: string,
   pipelineName: string,
   stackNames: string[]
 }
@@ -41,8 +43,8 @@ export class DeploymentPipeline extends Stack {
           actions: [
             new codepipeline_actions.CodeStarConnectionsSourceAction({
               actionName: 'GithubSource',
-              owner: 'sudopla',
-              repo: 'python-serverless-api',
+              owner: props.repoOwner,
+              repo: props.repoName,
               branch: 'main',
               connectionArn: ssm.StringParameter.valueForStringParameter(this, 'Github-Connection'),
               output: sourceArtifact
