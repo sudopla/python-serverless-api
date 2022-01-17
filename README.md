@@ -78,7 +78,7 @@ new CodePipelineStack(app, 'DeploymentPipelineStack', {
 2. `source .venv/bin/activate`
 3. `pip install -r requirements.txt`
 
-Run unit tests - `python -m pytest tests/unit`
+Run unit tests - `python -m pytest tests/unit` <br />
 Run integration tests - `python -m pytest tests/integration`
 
 ### Useful commands
