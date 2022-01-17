@@ -72,6 +72,15 @@ new CodePipelineStack(app, 'DeploymentPipelineStack', {
 3. `npm install`
 2. `npm run cdk deploy Python-Serverless-API-Pipeline-Stack`
 
+### How to configure Python environment for local development 
+
+1. `python3 -m venv .venv`
+2. `source .venv/bin/activate`
+3. `pip install -r requirements.txt`
+
+Run unit tests - `python -m pytest tests/unit`
+Run integration tests - `python -m pytest tests/integration`
+
 ### Useful commands
 
  * `cdk deploy`      deploy this stack to your default AWS account/region
