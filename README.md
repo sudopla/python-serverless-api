@@ -1,4 +1,4 @@
-# Python-APIGateway-DynamoDB
+# Python-Serverless-API
 
 This is a serverless API microservice developed using the [AWS CDK](https://aws.amazon.com/cdk/) and structured following [best practices](https://docs.aws.amazon.com/cdk/v2/guide/best-practices.html).
 
