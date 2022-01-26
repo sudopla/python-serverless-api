@@ -2,7 +2,7 @@
 
 This is a serverless API developed using the [AWS CDK](https://aws.amazon.com/cdk/) and structured following [best practices](https://docs.aws.amazon.com/cdk/v2/guide/best-practices.html).
 
-The application is organized into logical units, such as API, database, monitoring resources and deployment pipeline. These logical units should be implemented as [constructs](https://docs.aws.amazon.com/cdk/v2/guide/constructs.html), including the infrastructure and the runtime code. The constructs are later group in [stacks](https://docs.aws.amazon.com/cdk/v2/guide/stacks.html), which define the deployment models.
+The application is organized into logical units, such as API, database, monitoring resources and deployment pipeline. These logical units are implemented as [constructs](https://docs.aws.amazon.com/cdk/v2/guide/constructs.html), including the infrastructure and the runtime code. The constructs are later group in [stacks](https://docs.aws.amazon.com/cdk/v2/guide/stacks.html), which define the deployment models.
 
 The runtime code is written in Python and defines basic CRUD operations to manage music albums as an example.
 
